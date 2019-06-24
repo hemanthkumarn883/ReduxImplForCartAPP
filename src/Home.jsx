@@ -1,25 +1,27 @@
 import React from 'react';
 import './index.css';
+import { connect } from 'react-redux'
 import Card from './Card';
-import data from './data.json';
+// import data from './data.json';
+import { addToCart } from './reducers/homereducer';
 
 class Home extends React.Component {
-  constructor(props){
-    super(props);
-    // data.map((item) => { item.isSelected = false})
-    this.state = {
-      // data: sessionStorage.getItem('selected') && JSON.parse(sessionStorage.getItem('selected')) || data.map((item) => { item.isSelected = false; return item;})
-      data:data.map((item) => { item.isSelected = false; item.qty = 0;  return item;})
-    }
-  }
+  // constructor(props){
+  //   super(props);
+  //   // data.map((item) => { item.isSelected = false})
+  //   // this.state = {
+  //   //   // data: sessionStorage.getItem('selected') && JSON.parse(sessionStorage.getItem('selected')) || data.map((item) => { item.isSelected = false; return item;})
+  //   //   data:data.map((item) => { item.isSelected = false; item.qty = 0;  return item;})
+  //   // }
+  // }
   
-  changeStatus = (index) => {
-    // console.log("Liked: ", data[index])
-    var tempArr = this.state.data;
-    tempArr[index].isSelected = true;
-    this.setState({data: tempArr});
-    sessionStorage.setItem('selected',JSON.stringify(tempArr));
-  }
+  // changeStatus = (index) => {
+  //   // console.log("Liked: ", data[index])
+  //   var tempArr = this.state.data;
+  //   tempArr[index].isSelected = true;
+  //   this.setState({data: tempArr});
+  //   sessionStorage.setItem('selected',JSON.stringify(tempArr));
+  // }
   
   
   render(){
@@ -40,10 +42,10 @@ class Home extends React.Component {
 
           })
         } */}
-        {this.state.data.map((item, index) =>   !item.isSelected &&
+        {this.props.homeItems.map((item, index) =>   !item.isSelected &&
           <Card 
             item={item}
-            onClick = {this.changeStatus}
+            onClick = {addToCart}
             index={index}
           />
         )
@@ -56,4 +58,11 @@ class Home extends React.Component {
   
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  // console.log(' this is state from reducers '+JSON.stringify(state))
+  return ({
+  homeItems: state.homereducer.homeitems || []
+})}
+
+
+export default connect(mapStateToProps,)(Home)

@@ -1,33 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Card from './Card';
+import { removeFromCart } from './reducers/homereducer';
 
-export default class Cart extends React.Component{
-  constructor(props){
-    super(props);
-    // console.log('Hi: ',sessionStorage.getItem('selected'));
-    this.state = {
-      // data: JSON.parse(sessionStorage.getItem('selected')) || []
-      data: sessionStorage.getItem('selected') && JSON.parse(sessionStorage.getItem('selected')) || []
-    }
-  }
+class Cart extends React.Component{
+  // constructor(props){
+  //   super(props);
+  //   // console.log('Hi: ',sessionStorage.getItem('selected'));
+  //   this.state = {
+  //     // data: JSON.parse(sessionStorage.getItem('selected')) || []
+  //     data: sessionStorage.getItem('selected') && JSON.parse(sessionStorage.getItem('selected')) || []
+  //   }
+  // }
   
-  removeFromCart = (index) => {
-    // console.log("Liked: ", data[index])
-    var tempArr = this.state.data;
-    tempArr[index].isSelected = false;
-    this.setState({data: tempArr});
-    sessionStorage.setItem('selected',JSON.stringify(tempArr));
-  }
+  // removeFromCart = (index) => {
+  //   // console.log("Liked: ", data[index])
+  //   var tempArr = this.state.data;
+  //   tempArr[index].isSelected = false;
+  //   this.setState({data: tempArr});
+  //   sessionStorage.setItem('selected',JSON.stringify(tempArr));
+  // }
   
   
   
   render(){
     return(
       <div className="d-flex flex-wrap container">
-        {this.state.data.map((item, index) =>   item.isSelected && 
+        {this.props.homeItems.map((item, index) =>   item.isSelected && 
           <Card 
             item={item}
-            onClick = {this.removeFromCart}
+            onClick = {removeFromCart}
             // onQtyClick = {this.addQty}
             // removeFromCart={this.removeFromCart}
             index={index}
@@ -51,3 +53,13 @@ export default class Cart extends React.Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log(' this is state from reducers '+JSON.stringify(state))
+  return ({
+  homeItems: state.homereducer.homeitems || []
+})}
+
+
+
+export default connect(mapStateToProps,)(Cart)
