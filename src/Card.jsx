@@ -22,7 +22,7 @@ class Card extends Component {
         <span className="ml-2" style={{'fontSize':'10px','color':'#bebebe'}}>{this.props.item.email}</span>
         <div className="w-100 mt-2">
           <button className="btn btn-outline-secondary w-100" onClick={()=>{this.props.dispatch(this.props.onClick(this.props.index))}}>
-            {!this.props.item.isSelected?'Add':'Remove Item'}
+            {!this.props.item.isSelected?'Add to':'Remove Item'}
             <i class="fa fa-cart-plus pl-3" aria-hidden="true"></i>
           </button>
           {this.props.item.isSelected && 
