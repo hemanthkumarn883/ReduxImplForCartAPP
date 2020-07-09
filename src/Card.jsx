@@ -19,7 +19,7 @@ class Card extends Component {
         {/* {this.showMatchingName()} */}
         {/* {this.props.item.first_name+' '+this.props.item.last_nme} */}
         {/* </div> */}
-        <span className="ml-2" style={{'fontSize':'10px','color':'#bebebe'}}>{this.props.item.email}</span>
+        <span className="ml-2" style={{'fontSize':'10px','color':'#bebebe'}}>{this.props.item.il}</span>
         <div className="w-100 mt-2">
           <button className="btn btn-outline-secondary w-100" onClick={()=>{this.props.dispatch(this.props.onClick(this.props.index))}}>
             {!this.props.item.isSelected?'Add to bag':'Remove Item'}
