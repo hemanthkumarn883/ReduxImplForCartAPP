@@ -17,7 +17,7 @@ class Card extends Component {
         <img className="d-flex " style={{'width':'60px','height':'60px','borderRadius':'50%'}} src={this.props.item.avatar} alt="alternate-text"/>
         <div className="d-flex my-auto p-1" style={{"fontSize":'14px'}} />
         {/* {this.showMatchingName()} */}
-        {/* {this.props.item.first_name+' '+this.props.item.last_name} */}
+        {/* {this.props.item.first_name+' '+this.props.item.last_nme} */}
         {/* </div> */}
         <span className="ml-2" style={{'fontSize':'10px','color':'#bebebe'}}>{this.props.item.email}</span>
         <div className="w-100 mt-2">
